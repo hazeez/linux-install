@@ -1,0 +1,33 @@
+guake
+-----
+sudo apt-get install guake
+
+albert
+---------------
+sudo add-apt-repository ppa:nilarimogard/webupd8
+sudo apt-get update
+sudo apt-get install albert
+
+sublime-text
+---------------
+sudo apt-get install sublime-text 
+
+sublime-text-plugins
+--------------------
+package-control
+git gutter
+emmet
+centurion
+sublimecode intel
+origami
+Advanced new file
+css Comb
+colorpicker
+Autoprefixer
+gutter color
+html css js prettify
+All autocomplete
+sublime repl
+color highlighter
+goto anything
+
