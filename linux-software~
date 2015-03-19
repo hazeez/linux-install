@@ -59,11 +59,9 @@ sudo pip install virtualenv
 sudo pip install virtuaenvwrapper
 export WORKON_HOME=~Envs
 
-open .bash_profile or .bash_rc file and include at the end
------------------------------------------------------------
+open .bash_profile or .bash_rc file and include
 export WORKON_HOME=~/Envs
 source /etc/bash_completion.d/virtualenvwrapper
-
 
 
 
