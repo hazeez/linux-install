@@ -23,6 +23,9 @@ $ sudo apt-get install sublime-text-installer
 sublime-text-plugins
 --------------------
 package-control
+
+import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) 
+
 git gutter
 emmet
 centurion
@@ -59,9 +62,55 @@ sudo pip install virtualenv
 sudo pip install virtuaenvwrapper
 export WORKON_HOME=~Envs
 
-open .bash_profile or .bash_rc file and include
+open .bash_profile or .bash_rc file and include at the end
+-----------------------------------------------------------
 export WORKON_HOME=~/Envs
-source /etc/bash_completion.d/virtualenvwrapper
+source /usr/local/bin/virtualenvwrapper.sh
+
+additional repositories
+------------------------
+sudo add-apt-repository -y ppa:videolan/stable-daily
+sudo add-apt-repository -y ppa:otto-kesselgulasch/gimp
+sudo add-apt-repository -y ppa:gnome3-team/gnome3
+sudo add-apt-repository -y ppa:webupd8team/java
+sudo add-apt-repository -y ppa:webupd8team/y-ppa-manager
+echo 'deb http://download.videolan.org/pub/debian/stable/ /' | sudo tee -a /etc/apt/sources.list.d/libdvdcss.list &&
+echo 'deb-src http://download.videolan.org/pub/debian/stable/ /' | sudo tee -a /etc/apt/sources.list.d/libdvdcss.list &&
+wget -O - http://download.videolan.org/pub/debian/videolan-apt.asc|sudo apt-key add -
+
+
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get dist-upgrade
+
+Install essentials
+-------------------
+sudo apt-get install synaptic pidgin vlc gimp gimp-data gimp-plugin-registry gimp-data-extras y-ppa-manager bleachbit openjdk-7-jre oracle-java8-installer flashplugin-installer unace unrar zip unzip p7zip-full p7zip-rar sharutils rar uudeview mpack arj cabextract file-roller libxine1-ffmpeg mencoder flac faac faad sox ffmpeg2theora libmpeg2-4 uudeview libmpeg3-1 mpeg3-utils mpegdemux liba52-dev mpeg2dec vorbis-tools id3v2 mpg321 mpg123 libflac++6 totem-mozilla icedax lame libmad0 libjpeg-progs libdvdcss2 libdvdread4 libdvdnav4 libswscale-extra-2 ubuntu-restricted-extras
+
+Install google chrome
+---------------------
+if [[ $(getconf LONG_BIT) = "64" ]]
+then
+	echo "64bit Detected" &&
+	echo "Installing Google Chrome" &&
+	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &&
+	sudo dpkg -i google-chrome-stable_current_amd64.deb &&
+	rm -f google-chrome-stable_current_amd64.deb
+else
+	echo "32bit Detected" &&
+	echo "Installing Google Chrome" &&
+	wget https://dl.google.com/linux/direct/google-chrome-stable_current_i386.deb &&
+	sudo dpkg -i google-chrome-stable_current_i386.deb &&
+	rm -f google-chrome-stable_current_i386.deb
+fi
+
+clean-up
+---------
+echo "Cleaning Up" &&
+sudo apt-get -f install &&
+sudo apt-get autoremove &&
+sudo apt-get -y autoclean &&
+sudo apt-get -y clean
 
 
 
